@@ -5,12 +5,20 @@ import (
 )
 
 func Arguments() {
-	if len(os.Args) == 2 || len(os.Args) == 3 {
+	if len(os.Args) > 1 && len(os.Args) < 5 {
 		argument := os.Args[1:]
-		if argument[0] == Migrate {
+
+		switch argument[0] {
+		case Migrate:
 			ArgMigrate()
-		} else if argument[0] == Seeder {
+		case Seeder:
 			ArgSeeder()
+		case MakeRepository:
+			ArgRepository()
+		case MakeService:
+			ArgService()
+		case MakeHandler:
+			ArgHandler()
 		}
 	}
 }
