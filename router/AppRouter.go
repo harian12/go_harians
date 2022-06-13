@@ -7,4 +7,5 @@ import (
 func AppRouter() {
 	r := gin.Default()
 	RouterV1(r)
+	r.Run()
 }
