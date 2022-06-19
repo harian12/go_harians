@@ -37,7 +37,7 @@ func InitCommands(db *gorm.DB) {
 			Action: func(c *cli.Context) error {
 				MakeMigration(arg)
 				MakeDTO(arg)
-				//MakeRepository(arg)
+				MakeRepository(arg)
 				return nil
 			},
 		},
