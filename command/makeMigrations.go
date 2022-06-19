@@ -32,15 +32,15 @@ func MakeMigration(arg string) {
 		"package migrations \n" +
 			"\n" +
 			"import (\n" +
-			"\"gorm.io/gorm\"\n" +
-			"\"time\"" +
+			"	\"gorm.io/gorm\"\n" +
+			"	\"time\"" +
 			")\n\n" +
 			"type " + tableName + " struct {\n" +
-			"ID uint64 `json:\"" + strings.ToLower(tableName) + "\" gorm:\"primaryKey;uniqueIndex\"`\n" +
+			"	ID uint64 `json:\"" + strings.ToLower(tableName) + "\" gorm:\"primaryKey;uniqueIndex\"`\n" +
 			fields +
-			"DeletedAt gorm.DeletedAt `json:\"deleted_at\"`\n" +
-			"CreatedAt time.Time `json:\"created_at\"`\n" +
-			"UpdatedAt time.Time `json:\"updated_at\"`\n" +
+			"	DeletedAt gorm.DeletedAt `json:\"deleted_at\"`\n" +
+			"	CreatedAt time.Time `json:\"created_at\"`\n" +
+			"	UpdatedAt time.Time `json:\"updated_at\"`\n" +
 			"\n}"); err != nil {
 		panic(err)
 	}
@@ -70,9 +70,9 @@ func field(fl string, fungsi string) string {
 		tipeField := strings.Split(strings.Split(ruleField, "type:")[1], ";")[0]
 		if fungsi == "dto" {
 			tipeField = strings.Replace(tipeField, "*", "", 1)
-			fields += nameSplit + " " + tipeField + " `json:\"" + name + "\" validate:\"required\"`\n"
+			fields += "		" + nameSplit + " " + tipeField + " `json:\"" + name + "\" validate:\"required\"`\n"
 		} else {
-			fields += nameSplit + " " + tipeField + " `json:\"" + name + "\"`\n"
+			fields += "		" + nameSplit + " " + tipeField + " `json:\"" + name + "\"`\n"
 		}
 
 	}
