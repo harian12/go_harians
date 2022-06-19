@@ -26,8 +26,8 @@ func MakeDTO(arg string) {
 	if _, err = f.WriteString(
 		"package dto \n" +
 			" import ( \n" +
-			"\"gorm.io/gorm\" \n" +
-			"\"time\"\n" +
+			"	\"gorm.io/gorm\" \n" +
+			"	\"time\"\n" +
 			"  )\n" +
 			"\n" +
 			"type Create" + strings.Title(tableName) + " struct {\n" +
