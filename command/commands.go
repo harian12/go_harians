@@ -1,6 +1,7 @@
 package command
 
 import (
+	"flag"
 	"github.com/urfave/cli"
 	"go_harians/database/migrations"
 	"go_harians/database/seeders"
@@ -10,6 +11,8 @@ import (
 )
 
 func InitCommands(db *gorm.DB) {
+	arg := flag.Arg(1)
+
 	cmdApp := cli.NewApp()
 	cmdApp.Commands = []cli.Command{
 		{
@@ -22,7 +25,19 @@ func InitCommands(db *gorm.DB) {
 		{
 			Name: "db:seeder",
 			Action: func(c *cli.Context) error {
-				seeders.DBSeed(db)
+				err := seeders.DBSeed(db)
+				if err != nil {
+					return err
+				}
+				return nil
+			},
+		},
+		{
+			Name: "make:table",
+			Action: func(c *cli.Context) error {
+				MakeMigration(arg)
+				MakeDTO(arg)
+				//MakeRepository(arg)
 				return nil
 			},
 		},
