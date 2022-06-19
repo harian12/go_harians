@@ -2,11 +2,13 @@ package command
 
 import (
 	"errors"
+	"fmt"
 	"os"
 	"strings"
 )
 
 func MakeMigration(arg string) {
+	fmt.Println("fungsi create migrations")
 
 	split := strings.Split(arg, "=")
 	tableName := strings.Title(split[0])
@@ -69,10 +71,11 @@ func field(fl string, fungsi string) string {
 		/*type data field*/
 		tipeField := strings.Split(strings.Split(ruleField, "type:")[1], ";")[0]
 		if fungsi == "dto" {
-			tipeField = strings.Replace(tipeField, "*", "", 1)
 			fields += "		" + nameSplit + " " + tipeField + " `json:\"" + name + "\" validate:\"required\"`\n"
-		} else {
+		} else if fungsi == "migrations" {
 			fields += "		" + nameSplit + " " + tipeField + " `json:\"" + name + "\"`\n"
+		} else if fungsi == "service" {
+			fields += "		" + nameSplit + ": data." + nameSplit + ",\n"
 		}
 
 	}
