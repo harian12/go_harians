@@ -38,6 +38,7 @@ func InitCommands(db *gorm.DB) {
 				MakeMigration(arg)
 				MakeDTO(arg)
 				MakeRepository(arg)
+				MakeService(arg)
 				return nil
 			},
 		},
