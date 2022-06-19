@@ -31,6 +31,10 @@ func MakeMigration(arg string) {
 	if _, err = f.WriteString(
 		"package migrations \n" +
 			"\n" +
+			"import (\n" +
+			"\"gorm.io/gorm\"\n" +
+			"\"time\"" +
+			")\n\n" +
 			"type " + tableName + " struct {\n" +
 			"ID uint64 `json:\"" + strings.ToLower(tableName) + "\" gorm:\"primaryKey;uniqueIndex\"`\n" +
 			fields +
