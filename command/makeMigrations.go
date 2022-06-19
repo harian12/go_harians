@@ -17,11 +17,11 @@ func MakeMigration(arg string) {
 	fields := field(tableField, "migrations")
 
 	/*ccek apakah file sudah ada di folder migrations*/
-	if _, err := os.Stat("database/migrations/" + tableName + "_table.go"); !errors.Is(err, os.ErrNotExist) {
+	if _, err := os.Stat("database/migrations/" + strings.ToLower(tableName) + "_table.go"); !errors.Is(err, os.ErrNotExist) {
 		panic("migrations tabel sudah ada")
 	}
 
-	f, err := os.OpenFile("database/migrations/"+tableName+"_table.go", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
+	f, err := os.OpenFile("database/migrations/"+strings.ToLower(tableName)+"_table.go", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
 	if err != nil {
 		panic(err)
 	}
