@@ -6,19 +6,20 @@ import (
 )
 
 type Migration struct {
-	Tabel interface{}
+	Table interface{}
 }
 
 func RegisterTable() []Migration {
 	return []Migration{
-		//daftarkan model atau tabel migration disini
-		{Tabel: Users{}},
+		//daftarkan entity atau tabel migration disini
+		{Table: Users{}},
+		//{Table: Merchants{}},
 	}
 }
 
 func DBMigrate(db *gorm.DB) {
 	for _, tabel := range RegisterTable() {
-		errMigrate := db.Debug().AutoMigrate(tabel.Tabel)
+		errMigrate := db.Debug().AutoMigrate(tabel.Table)
 		if errMigrate != nil {
 			log.Fatal(errMigrate)
 		}
