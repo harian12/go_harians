@@ -1,13 +1,20 @@
 package main
 
 import (
-	"go_harians/command"
+	"flag"
 	"go_harians/config"
 	"go_harians/router"
 )
 
 func main() {
-	config.COnnectionDB()
-	command.Arguments()
-	router.AppRouter()
+
+	flag.Parse()
+	arg := flag.Arg(0)
+	if arg != "" {
+		config.Run()
+	} else {
+		config.Run()
+		router.AppRouter()
+	}
+
 }
